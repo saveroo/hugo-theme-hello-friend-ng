@@ -4,19 +4,18 @@
         {{ partial "head.html" . }}
     </head>
 
-    <body class="{{ if ne $.Site.Params.defaultTheme "light" -}} dark-theme {{- end -}}">
+    <body id="q-app" class="{{ if ne $.Site.Params.defaultTheme "light" -}} dark-theme {{- end -}}">
         <div class="container">
             {{ partial "header.html" . }}
 
             <div class="content">
-                {{ block "main" . }}{{ end }}
+                    {{ block "main" . }}{{ end }}
             </div>
 
             {{ block "footer" . }}
                 {{ partial "footer.html" . }}
             {{ end }}
         </div>
-
         {{ partial "javascript.html" . }}
     </body>
 </html>
