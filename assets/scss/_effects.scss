@@ -26,3 +26,606 @@
         text-shadow: -5px 0 #f44336, 5px -4px #2196f3;
     }
 }
+
+/*
+  MIXIN(S)
+  =================
+ https://codepen.io/chriscoyier/pen/XWrNyZy?editors=0110
+
+
+  (TEXT) PARAMS
+  =================
+  1. Namespace
+  2. Intensity
+  3. Text color
+  4. Background color (flat)
+  5. Highlight #1 color
+  6. Highlight #2 color
+  7. Width (px)
+  8. Height (px)
+*/
+.example-one {
+    color: #a9a9b3;
+    position: relative;
+}
+@keyframes example-one-anim-1 {
+    0% {
+        clip-path: inset(38% 0 36% 0);
+    }
+    5.8823529412% {
+        clip-path: inset(33% 0 38% 0);
+    }
+    11.7647058824% {
+        clip-path: inset(38% 0 56% 0);
+    }
+    17.6470588235% {
+        clip-path: inset(8% 0 58% 0);
+    }
+    23.5294117647% {
+        clip-path: inset(80% 0 17% 0);
+    }
+    29.4117647059% {
+        clip-path: inset(80% 0 18% 0);
+    }
+    35.2941176471% {
+        clip-path: inset(64% 0 25% 0);
+    }
+    41.1764705882% {
+        clip-path: inset(29% 0 43% 0);
+    }
+    47.0588235294% {
+        clip-path: inset(10% 0 34% 0);
+    }
+    52.9411764706% {
+        clip-path: inset(74% 0 3% 0);
+    }
+    58.8235294118% {
+        clip-path: inset(90% 0 3% 0);
+    }
+    64.7058823529% {
+        clip-path: inset(51% 0 44% 0);
+    }
+    70.5882352941% {
+        clip-path: inset(98% 0 1% 0);
+    }
+    76.4705882353% {
+        clip-path: inset(10% 0 1% 0);
+    }
+    82.3529411765% {
+        clip-path: inset(28% 0 48% 0);
+    }
+    88.2352941176% {
+        clip-path: inset(12% 0 34% 0);
+    }
+    94.1176470588% {
+        clip-path: inset(24% 0 62% 0);
+    }
+    100% {
+        clip-path: inset(55% 0 43% 0);
+    }
+}
+@keyframes example-one-anim-2 {
+    0% {
+        clip-path: inset(92% 0 7% 0);
+    }
+    5.8823529412% {
+        clip-path: inset(39% 0 35% 0);
+    }
+    11.7647058824% {
+        clip-path: inset(58% 0 6% 0);
+    }
+    17.6470588235% {
+        clip-path: inset(37% 0 45% 0);
+    }
+    23.5294117647% {
+        clip-path: inset(66% 0 28% 0);
+    }
+    29.4117647059% {
+        clip-path: inset(7% 0 42% 0);
+    }
+    35.2941176471% {
+        clip-path: inset(7% 0 31% 0);
+    }
+    41.1764705882% {
+        clip-path: inset(27% 0 8% 0);
+    }
+    47.0588235294% {
+        clip-path: inset(99% 0 2% 0);
+    }
+    52.9411764706% {
+        clip-path: inset(16% 0 67% 0);
+    }
+    58.8235294118% {
+        clip-path: inset(3% 0 97% 0);
+    }
+    64.7058823529% {
+        clip-path: inset(51% 0 27% 0);
+    }
+    70.5882352941% {
+        clip-path: inset(23% 0 21% 0);
+    }
+    76.4705882353% {
+        clip-path: inset(60% 0 13% 0);
+    }
+    82.3529411765% {
+        clip-path: inset(64% 0 12% 0);
+    }
+    88.2352941176% {
+        clip-path: inset(56% 0 4% 0);
+    }
+    94.1176470588% {
+        clip-path: inset(85% 0 4% 0);
+    }
+    100% {
+        clip-path: inset(6% 0 38% 0);
+    }
+}
+.example-one::before, .example-one::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $dark-background;
+}
+.example-one::after {
+    left: 2px;
+    text-shadow: -1px 0 #f41fdb;
+    animation: example-one-anim-1 2s infinite linear alternate-reverse;
+}
+.example-one::before {
+    left: -2px;
+    text-shadow: 2px 0 #16e144;
+    animation: example-one-anim-2 3s infinite linear alternate-reverse;
+}
+
+.example-two {
+    color: #a9a9b3;
+    position: relative;
+}
+@keyframes example-two-anim-1 {
+    0% {
+        clip-path: inset(81% 0 13% 0);
+    }
+    10% {
+        clip-path: inset(72% 0 5% 0);
+    }
+    20% {
+        clip-path: inset(40% 0 25% 0);
+    }
+    30% {
+        clip-path: inset(4% 0 89% 0);
+    }
+    40% {
+        clip-path: inset(82% 0 10% 0);
+    }
+    50% {
+        clip-path: inset(12% 0 35% 0);
+    }
+    60% {
+        clip-path: inset(99% 0 1% 0);
+    }
+    70% {
+        clip-path: inset(38% 0 8% 0);
+    }
+    80% {
+        clip-path: inset(83% 0 2% 0);
+    }
+    90% {
+        clip-path: inset(16% 0 9% 0);
+    }
+    100% {
+        clip-path: inset(54% 0 42% 0);
+    }
+}
+@keyframes example-two-anim-2 {
+    0% {
+        clip-path: inset(66% 0 22% 0);
+    }
+    10% {
+        clip-path: inset(85% 0 4% 0);
+    }
+    20% {
+        clip-path: inset(99% 0 1% 0);
+    }
+    30% {
+        clip-path: inset(90% 0 9% 0);
+    }
+    40% {
+        clip-path: inset(94% 0 2% 0);
+    }
+    50% {
+        clip-path: inset(39% 0 36% 0);
+    }
+    60% {
+        clip-path: inset(19% 0 72% 0);
+    }
+    70% {
+        clip-path: inset(81% 0 6% 0);
+    }
+    80% {
+        clip-path: inset(71% 0 15% 0);
+    }
+    90% {
+        clip-path: inset(14% 0 35% 0);
+    }
+    100% {
+        clip-path: inset(83% 0 4% 0);
+    }
+}
+.example-two::before, .example-two::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #9d158d;
+}
+.example-two::after {
+    left: 2px;
+    text-shadow: -1px 0 white;
+    animation: example-two-anim-1 2s infinite linear alternate-reverse;
+}
+.example-two::before {
+    left: -2px;
+    text-shadow: 2px 0 green;
+    animation: example-two-anim-2 3s infinite linear alternate-reverse;
+}
+
+/*
+  (IMAGE) PARAMS
+  =================
+  @mixin imgGlitch($name, $intensity, $width, $height, $top, $left)
+  =================
+  1. Namespace
+  2. Intensity
+  3. Width (px)
+  4. Height (px)
+  5. Top (px, abs pos)
+  6. Left (px, abs pos)
+*/
+@keyframes example-three-anim-1 {
+    0% {
+        clip-path: inset(84% 0 13% 0);
+    }
+    6.6666666667% {
+        clip-path: inset(99% 0 1% 0);
+    }
+    13.3333333333% {
+        clip-path: inset(99% 0 2% 0);
+    }
+    20% {
+        clip-path: inset(91% 0 8% 0);
+    }
+    26.6666666667% {
+        clip-path: inset(84% 0 5% 0);
+    }
+    33.3333333333% {
+        clip-path: inset(9% 0 51% 0);
+    }
+    40% {
+        clip-path: inset(35% 0 26% 0);
+    }
+    46.6666666667% {
+        clip-path: inset(21% 0 53% 0);
+    }
+    53.3333333333% {
+        clip-path: inset(65% 0 35% 0);
+    }
+    60% {
+        clip-path: inset(33% 0 42% 0);
+    }
+    66.6666666667% {
+        clip-path: inset(37% 0 15% 0);
+    }
+    73.3333333333% {
+        clip-path: inset(58% 0 16% 0);
+    }
+    80% {
+        clip-path: inset(100% 0 1% 0);
+    }
+    86.6666666667% {
+        clip-path: inset(77% 0 21% 0);
+    }
+    93.3333333333% {
+        clip-path: inset(28% 0 23% 0);
+    }
+    100% {
+        clip-path: inset(38% 0 23% 0);
+    }
+}
+@keyframes example-three-anim-2 {
+    0% {
+        clip-path: inset(35% 0 17% 0);
+    }
+    6.6666666667% {
+        clip-path: inset(98% 0 1% 0);
+    }
+    13.3333333333% {
+        clip-path: inset(65% 0 20% 0);
+    }
+    20% {
+        clip-path: inset(78% 0 11% 0);
+    }
+    26.6666666667% {
+        clip-path: inset(95% 0 6% 0);
+    }
+    33.3333333333% {
+        clip-path: inset(40% 0 13% 0);
+    }
+    40% {
+        clip-path: inset(16% 0 22% 0);
+    }
+    46.6666666667% {
+        clip-path: inset(13% 0 59% 0);
+    }
+    53.3333333333% {
+        clip-path: inset(88% 0 13% 0);
+    }
+    60% {
+        clip-path: inset(93% 0 7% 0);
+    }
+    66.6666666667% {
+        clip-path: inset(68% 0 9% 0);
+    }
+    73.3333333333% {
+        clip-path: inset(82% 0 6% 0);
+    }
+    80% {
+        clip-path: inset(32% 0 6% 0);
+    }
+    86.6666666667% {
+        clip-path: inset(60% 0 24% 0);
+    }
+    93.3333333333% {
+        clip-path: inset(46% 0 4% 0);
+    }
+    100% {
+        clip-path: inset(99% 0 2% 0);
+    }
+}
+.example-three > img {
+    position: absolute;
+    top: 99px;
+    left: 75px;
+}
+.example-three > img:nth-child(2) {
+    left: 77px;
+    animation: example-three-anim-1 2s infinite linear alternate-reverse;
+}
+.example-three > img:nth-child(3) {
+    left: 73px;
+    animation: example-three-anim-2 3s infinite linear alternate-reverse;
+}
+
+/*
+  (SVG) PARAMS
+  =================
+  @mixin svgGlitch($name, $intensity, $fillColor, $background, $width, $height, $top, $left)
+  =================
+  1. Namespace
+  2. Intensity
+  3. Fill Color
+  4. Background
+  5. Width (px)
+  6. Height (px)
+  5. Top (px, abs pos)
+  6. Left (px, abs pos)
+*/
+@keyframes example-four-anim-1 {
+    0% {
+        clip-path: inset(30% 0 36% 0);
+    }
+    3.3333333333% {
+        clip-path: inset(19% 0 26% 0);
+    }
+    6.6666666667% {
+        clip-path: inset(33% 0 41% 0);
+    }
+    10% {
+        clip-path: inset(32% 0 37% 0);
+    }
+    13.3333333333% {
+        clip-path: inset(12% 0 55% 0);
+    }
+    16.6666666667% {
+        clip-path: inset(86% 0 9% 0);
+    }
+    20% {
+        clip-path: inset(88% 0 9% 0);
+    }
+    23.3333333333% {
+        clip-path: inset(82% 0 7% 0);
+    }
+    26.6666666667% {
+        clip-path: inset(35% 0 18% 0);
+    }
+    30% {
+        clip-path: inset(56% 0 41% 0);
+    }
+    33.3333333333% {
+        clip-path: inset(49% 0 39% 0);
+    }
+    36.6666666667% {
+        clip-path: inset(3% 0 77% 0);
+    }
+    40% {
+        clip-path: inset(29% 0 24% 0);
+    }
+    43.3333333333% {
+        clip-path: inset(91% 0 4% 0);
+    }
+    46.6666666667% {
+        clip-path: inset(9% 0 16% 0);
+    }
+    50% {
+        clip-path: inset(44% 0 9% 0);
+    }
+    53.3333333333% {
+        clip-path: inset(90% 0 8% 0);
+    }
+    56.6666666667% {
+        clip-path: inset(38% 0 39% 0);
+    }
+    60% {
+        clip-path: inset(64% 0 30% 0);
+    }
+    63.3333333333% {
+        clip-path: inset(18% 0 81% 0);
+    }
+    66.6666666667% {
+        clip-path: inset(91% 0 10% 0);
+    }
+    70% {
+        clip-path: inset(100% 0 1% 0);
+    }
+    73.3333333333% {
+        clip-path: inset(59% 0 3% 0);
+    }
+    76.6666666667% {
+        clip-path: inset(83% 0 8% 0);
+    }
+    80% {
+        clip-path: inset(4% 0 22% 0);
+    }
+    83.3333333333% {
+        clip-path: inset(51% 0 14% 0);
+    }
+    86.6666666667% {
+        clip-path: inset(93% 0 3% 0);
+    }
+    90% {
+        clip-path: inset(12% 0 4% 0);
+    }
+    93.3333333333% {
+        clip-path: inset(86% 0 8% 0);
+    }
+    96.6666666667% {
+        clip-path: inset(68% 0 9% 0);
+    }
+    100% {
+        clip-path: inset(70% 0 21% 0);
+    }
+}
+@keyframes example-four-anim-2 {
+    0% {
+        clip-path: inset(100% 0 1% 0);
+    }
+    3.3333333333% {
+        clip-path: inset(84% 0 9% 0);
+    }
+    6.6666666667% {
+        clip-path: inset(50% 0 21% 0);
+    }
+    10% {
+        clip-path: inset(91% 0 1% 0);
+    }
+    13.3333333333% {
+        clip-path: inset(76% 0 21% 0);
+    }
+    16.6666666667% {
+        clip-path: inset(41% 0 7% 0);
+    }
+    20% {
+        clip-path: inset(93% 0 1% 0);
+    }
+    23.3333333333% {
+        clip-path: inset(9% 0 18% 0);
+    }
+    26.6666666667% {
+        clip-path: inset(60% 0 10% 0);
+    }
+    30% {
+        clip-path: inset(6% 0 87% 0);
+    }
+    33.3333333333% {
+        clip-path: inset(86% 0 15% 0);
+    }
+    36.6666666667% {
+        clip-path: inset(96% 0 5% 0);
+    }
+    40% {
+        clip-path: inset(68% 0 23% 0);
+    }
+    43.3333333333% {
+        clip-path: inset(80% 0 1% 0);
+    }
+    46.6666666667% {
+        clip-path: inset(29% 0 36% 0);
+    }
+    50% {
+        clip-path: inset(83% 0 16% 0);
+    }
+    53.3333333333% {
+        clip-path: inset(8% 0 88% 0);
+    }
+    56.6666666667% {
+        clip-path: inset(75% 0 5% 0);
+    }
+    60% {
+        clip-path: inset(18% 0 79% 0);
+    }
+    63.3333333333% {
+        clip-path: inset(71% 0 16% 0);
+    }
+    66.6666666667% {
+        clip-path: inset(55% 0 12% 0);
+    }
+    70% {
+        clip-path: inset(11% 0 5% 0);
+    }
+    73.3333333333% {
+        clip-path: inset(39% 0 21% 0);
+    }
+    76.6666666667% {
+        clip-path: inset(38% 0 25% 0);
+    }
+    80% {
+        clip-path: inset(25% 0 23% 0);
+    }
+    83.3333333333% {
+        clip-path: inset(29% 0 58% 0);
+    }
+    86.6666666667% {
+        clip-path: inset(37% 0 22% 0);
+    }
+    90% {
+        clip-path: inset(47% 0 45% 0);
+    }
+    93.3333333333% {
+        clip-path: inset(83% 0 10% 0);
+    }
+    96.6666666667% {
+        clip-path: inset(59% 0 10% 0);
+    }
+    100% {
+        clip-path: inset(6% 0 24% 0);
+    }
+}
+.example-four svg {
+    position: absolute;
+    top: 6px;
+    left: 175px;
+    fill: white;
+    background: black;
+    width: 100px;
+    height: 100px;
+}
+.example-four svg:nth-child(2) {
+    fill: red;
+    left: 173px;
+    animation: example-four-anim-1 2s infinite linear alternate-reverse;
+}
+.example-four svg:nth-child(3) {
+    fill: red;
+    left: 177px;
+    animation: example-four-anim-2 3s infinite linear alternate-reverse;
+}
+
+.wrap {
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}

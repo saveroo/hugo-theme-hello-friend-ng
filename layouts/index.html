@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="typewriter animated fadeIn" v-else>
-                    <h1 class="icon-3d">{{ .Site.Title }}</h1>
+                    <h1 data-text="{{.Site.Title}}" class="example-one icon-3d">{{ .Site.Title }}</h1>
                     {{- with .Site.Params.homeSubtitle }}
                         <p>{{.}}</p>
                     {{- end }}
