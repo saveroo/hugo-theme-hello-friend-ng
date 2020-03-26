@@ -19,8 +19,8 @@
 {{ end }}
 
 <!-- CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
-    type="text/css">
+<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css"
+>
 
 {{ $options := (dict "targetPath" "main.css" "outputStyle" "compressed" "enableSourceMap" true) }}
 {{ $style := resources.Get "scss/main.scss" | resources.ToCSS $options | resources.Minify | resources.Fingerprint }}
@@ -28,7 +28,10 @@
 
 {{ range $val := $.Site.Params.customCSS }}
     {{ if gt (len $val) 0 }}
-        <link rel="stylesheet" type="text/css" href="{{ $val }}">
+        <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" type="text/css" href="{{ $val }}">
+        <noscript>
+            <link rel="stylesheet" type="text/css" href="{{ $val }}">
+        </noscript>
     {{ end }}
 {{ end }}
 
@@ -53,8 +56,7 @@
 
 <!-- JSON Feed -->
 {{ if .OutputFormats.Get "json" }}
-<link href="{{ if .OutputFormats.Get "json" }}{{ .Site.BaseURL }}feed.json{{ end }}" rel="alternate"
-    type="application/json" title="{{ .Site.Title }}" />
+<link rel="preload" as="fetch" href="{{ if .OutputFormats.Get "json" }}{{ .Site.BaseURL }}feed.json{{ end }}" title="{{ .Site.Title }}" />
 {{ end }}
 
 <!-- Custom head tags -->
@@ -64,7 +66,6 @@
 
 <!-- FORKED -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
 
 <!-- Netlify CMS -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>

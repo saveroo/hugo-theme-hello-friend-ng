@@ -1,5 +1,5 @@
 {{ define "main" }}
-    <main aria-role="main">
+    <main>
         <div id="v-savero">
             <div v-if="!unlocked">
                 <div @click="touch()">
@@ -20,7 +20,6 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
     <script>
       new Vue({
         el: '#v-savero',
