@@ -1,18 +1,21 @@
 .typewriter h1 {
+  padding: 1px;
+  //display: in;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .25em solid #fe5186; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   //letter-spacing: .15em; /* Adjust as needed */
+  max-width: 350px;
   animation:
-          typing 1.5s steps(40, end),
+          typing 2s steps(40, end),
           blink-caret .85s step-end infinite;
 }
 
 /* The typing effect */
 @keyframes typing {
   from { width: 0 }
-  to { width: 100% }
+  to { width: 100%; display: inline }
 }
 
 /* The typewriter cursor effect */
