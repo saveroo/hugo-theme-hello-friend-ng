@@ -1,0 +1,112 @@
+
+.d-flex {
+  //margin-top: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  text-align:left;
+  code {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-size:12px;
+    background: transparent;
+    &.dark-theme {
+      background-color: $dark-background;
+      color: $dark-color;
+    }
+  }
+}
+
+.width-full {
+  width: 100%
+}
+.flex-items-baseline {
+  align-items: baseline
+}
+.mr-3 {
+  margin-right: 16px
+}
+.mr-1 {
+  margin-right: 4px;
+}
+span.mr-3 {
+  display:none
+}
+.mt-1 {
+  margin-top: 4px;
+}
+.mt-2 {
+  margin-top: 8px;
+}
+.mb-9 {
+  margin-bottom: 0;
+}
+.f6 {
+  font-size: 12px;
+}
+.d-inline-block {
+  display:inline-block;
+}
+.Box {
+  //background-color: white;
+  border: 2px solid $light-border-color;
+  .dark-theme & {
+    border: 0.5px solid $dark-border-color;
+  }
+  border-radius: 3px;
+  text-align: left!important;
+  //box-sizing: border-box!important;
+}
+a.link-gray-dark.no-underline.text-bold.wb-break-all {
+  word-break: break-all;
+  color: #fe5186;
+  text-decoration: none;
+  font-weight: 600;
+}
+.p-3 {
+  padding: 12px
+}
+.flex-justify-between {
+  justify-content: space-between
+}
+.dashboard-rollup-item {
+
+}
+a.branch-name {
+  display: inline-block;
+  padding: 2px 6px;
+  font: 12px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  border-radius: 3px;
+}
+.lh-condensed {
+  line-height: 1.25;
+}
+.commits.pusher-is-only-committer {
+  display:block;
+  text-align: left;
+  font-size: 10px !important;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  padding: 0px;
+}
+div.push {
+
+}
+.dashboard-break-word {
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-break: break-word;
+  >blockquote {
+    margin: 0px !important;
+    &:before {
+      content: ''
+    }
+  }
+}
+.flex-column {
+  flex-direction: column
+}
