@@ -4,6 +4,8 @@
 {{ $theme := resources.Get "js/theme.js" }}
 {{ $secureJS := slice $main $menu $prism $theme | resources.Concat "bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 <script async type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{/*{{ $tt := slice $main $menu $prism $theme }}*/}}
+{{/*{{ printf "%#v" $tt }}*/}}
 
 {{- if .Site.GoogleAnalytics }}
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -32,9 +34,86 @@
     </script>
 {{- end}}
 
+<!-- Add HUGO Scratch -->
 
 {{ range $val := $.Site.Params.customJS }}
 	{{ if gt (len $val) 0 }}
 		<script src="{{ $val }}"></script>
 	{{ end }}
 {{ end }}
+
+{{/*{{ $val := $.Site.Params.vueComponents }}*/}}
+{{ range $k, $val := $.Site.Params.vueComponents }}
+    {{ if gt (len $val) 0 }}
+        {{- if templates.Exists (printf "partials/components/%s.html" (index $.Site.Params.vueComponents $k))}}
+                {{- (partial (printf "components/%s.html" .) $) -}}
+        {{- end }}
+    {{- end }}
+{{- end }}
+
+<!-- VUEX LOAD GLOBAL -->
+{{- if templates.Exists "partials/store/global.html" }}
+    {{ $gb := partial "store/global.html" . }}
+    {{ $test := $gb }}
+{{/*    {{ .Render "partials/vuex/global.html" | safeJS }}*/}}
+{{/*    <script src="{{ partial ("global.js") . }}">*/}}
+    {{- $test | safeHTML -}}
+{{ end }}
+<span class="hidden svelte svelte-popover svelte-rieja svelte-badge">
+</span>
+<script>
+  new Vue({
+    el: '#v-savero',
+    {{/*components: {{$.Site.Params.vueComponents}},*/}}
+    data: function() {
+      return {
+        unlocked: this.getWithExpiry('unlocked')
+      }
+    },
+    delimiters: ["<%", "%>"],
+    computed: {
+      model_unlocked: {
+        get() {
+          return this.getWithExpiry('unlocked')
+        },
+        set(v) {
+          this.setWithExpiry('unlocked', v, 600000);
+          this.unlocked = this.getWithExpiry('unlocked')
+        }
+      },
+    },
+    methods: {
+      setWithExpiry(key, value, ttl) {
+        const now = new Date()
+        if(!localStorage.getItem(key)) {
+          const item = {
+            value: value,
+            expiry: now.getTime() + ttl
+          };
+          localStorage.setItem(key, JSON.stringify(item))
+        }
+      },
+      getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+        if(!itemStr) {
+          return null
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+        if(now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return null
+        }
+        return item.value
+      },
+      touch() {
+        let self = this;
+        const container = document.querySelector('.ctr')
+        container.addEventListener('animationend', () => {
+          self.model_unlocked = true;
+          container.classList.remove('ac');
+        });
+      }
+    }
+  })
+</script>
