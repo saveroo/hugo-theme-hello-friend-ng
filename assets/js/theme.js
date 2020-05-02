@@ -8,6 +8,7 @@ var metaThemeColor = document.querySelector("meta[name=theme-color]");
 if (getTheme !== null) {
   document.body.classList.toggle("dark-theme", isDark);
   isDark ? metaThemeColor.setAttribute("content", "#252627") : metaThemeColor.setAttribute("content", "#fafafa");
+  transformSimpleIcon();
 }
 
 themeToggle.addEventListener("click", () => {
@@ -19,5 +20,5 @@ themeToggle.addEventListener("click", () => {
     );
   document.body.classList.contains("dark-theme") ?
     metaThemeColor.setAttribute("content", "#252627") : metaThemeColor.setAttribute("content", "#fafafa");
-  ;
+    transformSimpleIcon();
 });

@@ -1,0 +1,48 @@
+<span id="v-simpleicon{{ seq 999 | shuffle | first 1 }}" class="wrapper-tech-stack">
+    {{ $icons := index .Params 0 }}
+    {{ $icons2 := index .Params 1 }}
+    {{ $json := $.Site.Data.simpleicon }}
+    {{ range $json }}
+        {{ $test := printf "%s.svg" $icons}}
+        {{ $test2 := printf "%s.svg" $icons2}}
+        {{ $param1 := index $.Params 0}}
+        {{ $param2 := index $.Params 1}}
+        {{ $param3 := index $.Params 2}}
+        {{- if or (eq .title $icons) (eq .name $test) (eq .name $test2) -}}
+            <div
+                data-color="{{.color}}"
+                data-bgcolor="{{.color}}15"
+                alt="{{.title}}"
+                class="box-tech-stack tech-stack {{cond (eq .isDark false) "white" "dark"}}"
+                style="
+                        background-color: {{.color}}15;
+                        color: {{.color}};
+                        {{/*color: {{cond (eq .isDark false) "white" "black"}};*/}}
+                        "
+            >
+                <i class="simpleicons {{cond (eq .isDark false) "white" "dark"}}" title="{{ cond (eq (len $.Params) 2) $param2 .title }}"
+{{/*                   style="color: {{.color}};"*/}}
+{{/*                   style="color: {{cond (eq .isDark false) "white" "black"}};"*/}}
+                >
+                        {{- cond (eq (len $.Params) 2) $param2 $param1 -}}
+                </i>
+                <span class="tech-stack-text">
+                    {{- cond (eq (len $.Params) 3) $param3 .title -}}
+                </span>
+            </div>
+        {{ end }}
+    {{ end }}
+</span>
+<!-- GITGET Hugo's way -->
+{{/*{{ $urlPre := "https://api.github.com" }}*/}}
+{{/*{{ $git_user := "userXYZ" }}*/}}
+{{/*{{ $user_json := getJSON $urlPre "/users/" $git_user "/repos" }}*/}}
+{{/*{{ range $user_json }}*/}}
+{{/*    {{ $u := . }}*/}}
+{{/*    <h2>{{ $u.name }}</h2>*/}}
+{{/*    {{ $repo_json := getJSON $urlPre "/repos/" $git_user "/" $u.name }}*/}}
+{{/*    {{ range $k,$v :=   $repo_json }}*/}}
+{{/*        {{ $k }} =&gt; {{ $v }}<br><br>*/}}
+{{/*    {{ end }}*/}}
+{{/*    <hr>*/}}
+{{/*{{ end }}*/}}

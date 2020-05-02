@@ -1,0 +1,223 @@
+{{/*<script*/}}
+{{/*        type="text/javascript"*/}}
+{{/*        src="https://cdn.jsdelivr.net/npm/gist-embed@1.0.4/dist/gist-embed.min.js"*/}}
+{{/*></script>*/}}
+{{/*<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>*/}}
+<script>
+  Vue.component('GetGist',{
+    data() {
+      return {
+        // gist: props.gist,
+        // file: props.file,
+        // cssAdded: false,
+        gistCallbackId: 0,
+        loading: true,
+        src: ''
+      }
+    },
+    props: ['gist', 'file', 'cssAdded'],
+    created() {
+      const nextGist = () => {
+        return 'embed_gist_callback_' + this.gistCallbackId++
+      };
+      let gistCallback = nextGist();
+      window[gistCallback] = function(gist) {
+        // console.log(gist)
+        this.loading = false;
+        this.src = gist.div;
+        this.addCss(gist.stylesheet)
+      }.bind(this)
+
+      let url = 'https://gist.github.com/' + this.gist + '.json?callback=' + gistCallback;
+      if (this.file) {
+        url += '&file=' + this.file;
+      }
+
+      let script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = url;
+      document.head.appendChild(script);
+    },
+    methods: {
+      addCss(href) {
+        if(!this.cssAdded) {
+          this.cssAdded = true;
+          let link = document.createElement('link');
+          link.type = 'text/css';
+          link.rel = 'stylesheet';
+          link.href = href;
+          document.head.appendChild(link)
+        }
+      }
+    },
+    template: `
+    <div>
+    <div v-html="src"></div>
+    </div>
+  `
+  });
+  Vue.component('GetGists',{
+    props: ['gist', 'file', 'cssAdded'],
+    template: `
+        <div class="">
+        <div class="my-gist-card" v-for="(gist, i) in gists" :key="i">
+            <div class="my-gist-card-content">
+                <div>
+                    <a style="text-decoration: none; color: #fe5186" :href="gist.git_pull_url">
+                        <% gist.owner.login %>
+                    </a>/
+                     <select class="selected" @change="getG(gist, gist.id, gist_filename, $event)"
+                             v-model="gist_filename">
+                        <option value="1">Select gist to show</option>
+                       <option v-for="(file, fi) in gist.files" :key="555+fi"
+                        :value="555+fi"><% file.filename %></option>
+                     </select>
+                    |
+                    <span><% Object.keys(gist.files).length %> files</span>
+<i :title="icon.code" class="simpleicons" :style="icon.color" v-for="(icon, iconi) in getLanguageIcon(gist.files)" :key="55+iconi">
+                    <% icon.code %>
+                </i>
+                </div>
+                <pre style="color: wheat;"><% gist.description %></pre>
+                <div v-for="(file, fi) in gist.files" :key="555+fi">
+                    <div v-if="gist_index === 555+fi" class="highlight">
+                        <get-gist :gist="gist.owner.login+'/'+gist.id" :file="file.filename" />
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div class="">
+    `,
+    data: function () {
+      return {
+        test: `
+        <!DOCTYPE html>
+                            <html lang="en">
+                            <head>
+                                <meta charset="UTF-8">
+                                <title>Example HTML5 Document</title>
+                            </head>
+                            <body>
+                            <p>Test</p>
+                            </body>
+                            </html>`,
+        gists: null,
+        gist_filename: "1",
+        gist_index: null,
+        gist_language: null,
+        gist_raw: null,
+        gist_data: null,
+        g_json: null,
+        language_list: [
+            ".js:javascript:#F7DF1E",
+            ".rb:ruby:#CC342D",
+            ".html:html5:#E34F26",
+            ".md:markdown:black",
+            ".php:php:#777BB4",
+            ".react.js:react:#61DAFB",
+            ".sh:gnubash:#4EAA25",
+            ".cs:CSharp:#239120",
+            ".json:JSON:black",
+            ".py:python:#3776AB",
+        ]
+      }
+    },
+    delimiters: ["<%", "%>"],
+    created() {
+      this.getGists();
+    },
+    mounted() {
+    },
+    methods: {
+      getLanguageIcon(files) {
+        let arr = []
+        this.language_list.forEach((lang) => {
+          let l = lang.split(":")
+          // console.log(Object.keys(files))
+          Object.keys(files).forEach((v) => {
+            // console.log(v.split("."))
+            if(v.split(".").length > 1) {
+              // console.log(l[0], v.split(".")[1])
+              if((("."+v.split(".")[1])) === l[0]){
+                let obj = {
+                  code: l[1],
+                  color: `color: ${l[2]};`
+                }
+                arr.push(obj)
+              }
+            }
+          })
+        })
+        return arr;
+      },
+      ft(api) {
+        return new Promise((resolve, reject) => {
+          fetch(api, {mode: 'no-cors', headers: {
+              'Content-Type': 'application/json'
+            }})
+          .then(res => {
+            return res.text()
+          })
+          .then(data => {
+            resolve(data ? JSON.parse(data) : {})
+          })
+          .catch((error) => {
+            reject(error)
+          });
+        })
+      },
+      async getG(owner, id, filename, key) {
+        console.log(owner, id, filename, key)
+        this.gist_index = key.target.value || key;
+        // let api = `https://gist.github.com/${ owner.owner.login }/${ id }.json`;
+        // let ft = await this.ft(api);
+        // console.log(ft);
+        // // console.log(fetchGist)
+        // this.getGist(id, filename, '', key).then(async res => {
+        //   api = "https://gist.github.com/saveroo/306f54e1a0dd40a5587ef5e5f0348c3b.json";
+        //   return res;
+        // }).then(async data => {
+        // });
+      },
+      async getGist(id, filename, language, key) {
+        let api = "https://api.github.com/gists/"+id;
+        let ft = await axios.get(api);
+        let ftt = ft.data;
+        // console.log(ftt);
+        this.gist_index = key;
+        this.gist_filename = filename;
+        this.gist_language = language.toLowerCase();
+        this.gist_raw = ftt.files[filename].content;
+        this.gist_data = ftt;
+        return ftt
+      },
+      async getCode(url) {
+        console.log(url);
+        let ft = await fetch(url);
+        let ftt = await ft.text();
+      },
+      getGists() {
+        let api = "https://api.github.com/users/saveroo/gists";
+        let self = this;
+        fetch(api).then(response => {
+          return response.json()
+        })
+        .then((data) => {
+          // console.log(data);
+          for (let i = 0; i < data.length; i++) {
+            // for (key in data[i].files) {
+            // self.getCode(data[i].files[key].raw_url)
+            // }
+            // for (let j = 0; j < data[i].files.length; j++) {
+            //   console.log(data[i].files[Object.keys(data[i].files)[j]].raw_url)
+            //   // self.getCode(data[i].files[Object.keys(data[i].files)[j]].raw_url)
+            //   // console.log(data[i].files);
+            // }
+          }
+          this.gists = data;
+        })
+      }
+    }
+  })
+</script>

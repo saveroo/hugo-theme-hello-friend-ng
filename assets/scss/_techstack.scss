@@ -1,0 +1,67 @@
+.wrapper-tech-stack {
+}
+.dark-tech-stack {
+  //color: black;
+}
+.dark-simpleicons {
+  //color: initial !important;
+}
+.tech-dark {
+  //color: black !important;
+}
+.tech-stack {
+  &:hover {
+    //opacity: 1;
+  }
+  //opacity: 0.5;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-right: 4px;
+  padding-left: 4px;
+  align-items: center;
+
+}
+.tech-stack-text {
+  color: black;
+  font-weight: 200;
+  font-family: "Roboto Lt";
+  -webkit-font-smoothing: antialiased;
+
+  .dark-theme & {
+    color: rgba(255, 255, 255, 1);
+    font-weight: 300;
+    font-family: "Roboto";
+
+    //text-shadow: 0px 0px 1px
+    //color: inherit;
+  }
+}
+.toggled {
+  color: rgb(255,255,255) !important
+}
+.box-tech-stack {
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0,0,0,0.55);
+    color: white;
+    user-select: none;
+    cursor: pointer;
+  }
+  .white & {
+    //-webkit-text-stroke: 0.2px white !important;
+    //color: black !important;
+  }
+  //box-shadow: 0 2px 2px rgba(0,0,0,0.55);
+  .dark-theme & {
+    //color: initial !important;
+    background-color: initial;
+    //border: 0.6px solid;
+    -webkit-font-smoothing: antialiased;
+    //color: black !important;
+  }
+}
+.simpleicons.white {
+  //color: black;
+}
