@@ -1,0 +1,55 @@
+{{ $icons := index .Params 0 }}
+{{ $icons2 := index .Params 1 }}
+{{ $json := $.Site.Data.simpleicon }}
+{{ range $json }}
+    {{ $name := (replace .name ".svg" "") }}
+    {{ $opacity := (cond (eq .isDark false) 15 15) }}
+    {{ $color := .color }}
+    {{ $orDark := cond (eq .isDark false) "white" "dark" }}
+    {{ $rand := seq 999 | shuffle | first 1 }}
+    {{ $.Page.Scratch.Set .name (printf `
+        <span id="v-simpleicon%d" class="wrapper-tech-stack"
+         style="
+             line-height: 24px;
+             display: inline-block;
+         "
+        >
+         <div
+            data-color="%s"
+            data-bgcolor="%s"
+            class="box-tech-stack tech-stack %s"
+            style="background-color: %s;color: %s;
+            display:block;
+            border-radius: 100%s;"
+         >
+                <i
+                    class="simpleicons %s" title="%s"
+                    style="margin-right: -1px;"
+                >
+                %s
+                </i>
+         </div>
+        </span>
+    ` $rand $color (print .color $opacity) $orDark (print .color $opacity) $color "%" $orDark .title .title  | safeHTML)}}
+
+{{/*    {{ $test := printf "%s.svg" $icons}}*/}}
+{{/*    {{ $test2 := printf "%s.svg" $icons2}}*/}}
+{{/*    {{ $param1 := index $.Params 0}}*/}}
+{{/*    {{ $param2 := index $.Params 1}}*/}}
+{{/*    {{ $param3 := index $.Params 2}}*/}}
+{{/*    {{ if or (eq .title $icons) (eq .name $test) (eq .name $test2) }}*/}}
+{{/*        <div*/}}
+{{/*                class="box-tech-stack tech-stack"*/}}
+{{/*                style="*/}}
+{{/*                        background-color: {{.color}}{{cond (eq .isDark false) 90 90}};*/}}
+{{/*                        color: {{cond (eq .isDark false) "white" "black"}};*/}}
+{{/*                        "*/}}
+{{/*        >*/}}
+{{/*            <i class="simpleicons" title="{{ cond (eq (len $.Params) 2) $param2 .title }}"*/}}
+{{/*               style="opacity: 1 !important; color: {{cond (eq .isDark false) "white" "black"}};">*/}}
+{{/*                {{ cond (eq (len $.Params) 2) $param2 $param1 }}*/}}
+{{/*            </i>*/}}
+{{/*            {{ cond (eq (len $.Params) 3) $param3 .title }}*/}}
+{{/*        </div>*/}}
+{{/*    {{ end }}*/}}
+{{ end }}
