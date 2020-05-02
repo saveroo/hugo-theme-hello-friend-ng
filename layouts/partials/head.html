@@ -65,6 +65,10 @@
     {{ partial "extra-head.html" . }}
 {{- end }}
 
+<!-- Add HUGO Scratch -->
+{{/*<script>*/}}
+{{/*  window.localStorage.getItem("theme") === 'dark' ? {{.Scratch.Set "isDark" true}}:{{.Scratch.Set "isDark" false}};*/}}
+{{/*</script>*/}}
 <!-- FORKED -->
 {{ if .Site.Params.production }}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@^2.6.0/dist/vue.min.js"></script>
@@ -80,6 +84,25 @@
 {{/*<link href='//cdn.jsdelivr.net/npm/devicons@1.8.0/css/devicons.min.css' rel='stylesheet'>*/}}
 <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
 
+{{/*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*/}}
+{{/*<meta property="fb:app_id" content="1401488693436528">*/}}
+{{/*<meta property="og:url" content="https://github.com">*/}}
+{{/*<meta property="og:site_name" content="GitHub">*/}}
+{{/*<meta property="og:title" content="Build software better, together">*/}}
+{{/*<meta property="og:description" content="GitHub is where people build software. More than 40 million people use GitHub to discover, fork, and contribute to over 100 million projects.">*/}}
+{{/*<link rel="web-socket" href="wss://live.github.com/_sockets/VjI6NTEzMjE1NzE0OjkyYjEyMWYwOTNjMTg3NzdiOTJhNjg4OGRjMDc1ZTBlZDYyYzE5OTgxY2M1ODhmY2UwN2M0ZTZmMmNmYTAwOGE=--0624c428f15202065dccba2da1a3df1278708783">*/}}
+{{/*<meta name="request-id" content="CADA:063C:F426E2:14AD026:5E811D40" data-pjax-transient="true">*/}}
+{{/*<meta name="html-safe-nonce" content="ce900f2625cb15265a0389ba7829c9f3ce1a6f39" data-pjax-transient="true">*/}}
+{{/*<meta name="visitor-hmac" content="962b154748abf53cb794de021fc144e7f4b7c982eee9aada7cc0b4b965d7aadf" data-pjax-transient="true">*/}}
+{{/*<meta http-equiv="x-pjax-version" content="fa5e8a0d2d676f2f0c1c122689fa521e">*/}}
+{{/*<link rel="alternate" type="application/atom+xml" title="ATOM" href="/saveroo.private.atom?token=ABE4SSMSD3ZHNUKQLV5U4AV4RT7EG">*/}}
+{{/*<link rel="manifest" href="/manifest.json" crossorigin="use-credentials">*/}}
+{{/*<input type="hidden" value="8E+0VCdulRqn+lom0ykvayMFa0qNaMGB4W4+QfMM9Jdo0RixBU66GIQu3fvNvp73EXRQCTgmgISIK4KToAqaRw==" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf">*/}}
+{{/*<link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">*/}}
+{{/*<meta id="data-discourse-setup" data-base-url="https://elixirforum.com" data-base-uri="" data-environment="production" data-letter-avatar-version="5_81c48a6156c45fac0d25db91e6a334df" data-markdown-it-url="/assets/markdown-it-bundle-d16e807e5b788df13c0916ed58ce82c8978420ecf7d5bb1d73c60d72156a331c.js" data-service-worker-url="service-worker-29f380effd40cdaa98cfa88ea74b0c66ba6ca6c901f666253c7592d49fa5e7d4.js" data-default-locale="en_US" data-asset-version="df33aee1f96fbc0d904e406f39cf3fc7" data-disable-custom-css="false" data-highlight-js-path="/highlight-js/elixirforum.com/d58a99bee273e04c18fa96a9fd30e465926820bf.js" data-svg-sprite-path="/svg-sprite/elixirforum.com/svg-38-b07bd923a8ea6b7601b4113408c056bc2028e4b8.js" data-enable-js-error-reporting="true">*/}}
+{{/*<meta name="csrf-param" content="authenticity_token">*/}}
+{{/*<meta name="csrf-token" content="HpzQ/wTTWnrArqsqzChUL89i903aQ1140Ggk9XqifsVmBX78mgQCNeuqIXSN774T4DpnuKSRvodx/gn9M8DeMg==">*/}}
+{{/*<meta name="generator" content="Gatsby 2.19.42">*/}}
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 <script>
   // var ReactVersion = '16.13.1';
