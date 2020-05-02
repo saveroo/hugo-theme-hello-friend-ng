@@ -1,0 +1,13 @@
+{{/* Vue Component Version*/}}
+<Github-Activity username="{{index .Params 0}}"></Github-Activity>
+
+{{/* Hugo Version*/}}
+{{/*<div>*/}}
+{{/*    {{ $githubUser := index .Params 0}}*/}}
+{{/*    {{ $githubLink := printf "https://feed2json.org/convert?url=https://github.com/%s.atom" $githubUser }}*/}}
+{{/*    {{ with getJSON $githubLink }}*/}}
+{{/*        {{range first 5 .items}}*/}}
+{{/*            {{.content_html | safeHTML}}*/}}
+{{/*        {{end}}*/}}
+{{/*    {{end}}*/}}
+{{/*</div>*/}}
