@@ -1,6 +1,7 @@
 <script>
 Vue.component('GithubActivity', {
   // name: 'github-activity',
+  props: ['username'],
   template: `
 <div class="" >
     <div v-for="(g, i) in git" :key="i">
@@ -39,7 +40,7 @@ Vue.component('GithubActivity', {
     }
   },
   created() {
-    this.githubActivity()
+    this.githubActivity(this.username)
     // this.setWithExpiry('unlocked', false, 30000)
     // this.unlocked = this.getWithExpiry('unlocked')
   },
@@ -67,12 +68,26 @@ Vue.component('GithubActivity', {
       }
       return item.value
     },
-    githubActivity() {
+    githubActivity(username) {
       if (!this.model_git) {
-        fetch("http://localhost:3001/proxy?url=https://github.com/saveroo.atom")
+        //Ngocor Service
+        //http://localhost:3001/proxy?url=https://shorturl.at/diABP
+        // fetch("http://noxy.now.sh/api/proxy?url=")
+        // fetch("https://noxy.saveroo27.now.sh/api/proxy?url=https://github.com/"+username+".atom")
+        // fetch("http://localhost:3000/api/proxy?url=https://github.com/"+username+".atom")
+        // fetch("http://noxy.saveroo27.now.sh/api/proxy?url=https://feed2json.org/convert?url=https://github.com%2Fsaveroo.atom")
+        fetch("https://noxy.saveroo27.now.sh/api/goxy?url=https://github.com%2Fsaveroo.atom")
         .then((res) => {
           return res.text();
         })
+        // .then((json) => {
+        //     let arr = [];
+        //     for (let i = 0; i < 3; i++) {
+        //       arr.push(json.items[i].content_html)
+        //     }
+        //     this.git = arr;
+        //     this.model_git = arr;
+        // })
         .then((xml) => {
           const events = ["Push", "Star", "Fork", "Gist", "Create", "Pull", "Release"];
           const parser = new DOMParser();
@@ -93,6 +108,9 @@ Vue.component('GithubActivity', {
           }
           this.git = arr;
           this.model_git = arr;
+        })
+        .catch((err) => {
+          console.log("Something is wrong", err)
         })
       } else {
         this.git = this.model_git;

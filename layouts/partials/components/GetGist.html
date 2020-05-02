@@ -10,6 +10,7 @@
         // gist: props.gist,
         // file: props.file,
         // cssAdded: false,
+        isCssFromGithubAdded: false,
         gistCallbackId: 0,
         loading: true,
         src: ''
@@ -22,7 +23,6 @@
       };
       let gistCallback = nextGist();
       window[gistCallback] = function(gist) {
-        // console.log(gist)
         this.loading = false;
         this.src = gist.div;
         this.addCss(gist.stylesheet)
@@ -41,7 +41,7 @@
     methods: {
       addCss(href) {
         if(!this.cssAdded) {
-          this.cssAdded = true;
+          this.isCssFromGithubAdded = true;
           let link = document.createElement('link');
           link.type = 'text/css';
           link.rel = 'stylesheet';
@@ -56,8 +56,11 @@
     </div>
   `
   });
+
+  // GetGists Means ALL GIST
+  // Calling get-gist to display specific
   Vue.component('GetGists',{
-    props: ['gist', 'file', 'cssAdded'],
+    props: ['username', 'gist', 'file', 'cssAdded'],
     template: `
         <div class="">
         <div class="my-gist-card" v-for="(gist, i) in gists" :key="i">
@@ -120,12 +123,13 @@
             ".cs:CSharp:#239120",
             ".json:JSON:black",
             ".py:python:#3776AB",
+            ".swift:swift:#FA7343",
         ]
       }
     },
     delimiters: ["<%", "%>"],
     created() {
-      this.getGists();
+      this.getGists(this.username);
     },
     mounted() {
     },
@@ -168,7 +172,7 @@
         })
       },
       async getG(owner, id, filename, key) {
-        console.log(owner, id, filename, key)
+        // console.log(owner, id, filename, key)
         this.gist_index = key.target.value || key;
         // let api = `https://gist.github.com/${ owner.owner.login }/${ id }.json`;
         // let ft = await this.ft(api);
@@ -193,12 +197,12 @@
         return ftt
       },
       async getCode(url) {
-        console.log(url);
+        // console.log(url);
         let ft = await fetch(url);
         let ftt = await ft.text();
       },
-      getGists() {
-        let api = "https://api.github.com/users/saveroo/gists";
+      getGists(gist_user) {
+        let api = "https://api.github.com/users/"+ gist_user +"/gists";
         let self = this;
         fetch(api).then(response => {
           return response.json()
